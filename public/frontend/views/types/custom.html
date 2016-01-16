@@ -1,0 +1,48 @@
+<div class="device-params">
+  <div><pre>{{activeDevice.params | json}}</pre></div>
+</div>
+
+<div ng-if="isDeviceOnline(activeDevice)">
+  {{isDeviceOnline(activeDevice)}}
+</div>
+
+
+<div style="margin-top: 1em; text-align: left">
+  <ul class="list-group">
+    <li ng-repeat="command in activeDevice.params.commands" class="list-group-item">
+      <div class="btn-group">
+          <button ng-click="removeCommand('{{command}}')" class="btn btn-danger pull-left">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button> 
+          <button class="btn btn-info"><span> {{command}} </span> </button>
+          <button ng-click="issueCommand('{{command}}', activeDevice, '{{command}}')" class="btn btn-warning pull-right">
+            <span class="glyphicon glyphicon-hand-up"></span>
+          </button>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="form-group">
+        <div class='input-group' id='commandeditor'>
+          <input id="commandName" type='text' class="form-control" name="commandName"/>
+          <span class="input-group-addon">
+            <span class="glyphicon"></span>
+          </span>
+        </div>
+      </div>
+      <div style="display: table">
+        <div>
+          <button ng-click="addCommand()" class="btn btn-primary">Add Command</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<div style="margin-top: 1em; text-align: left">
+<!--  <div show-image url= {{activeDevice.clientCamera}}></div>
+-->
+  <img src="data:image/jpeg;base64,{{activeDevice.clientCamera}}"/>
+
+
+</div>
