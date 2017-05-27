@@ -30,7 +30,55 @@ Hidrun is not an ordinary IoT cloud platform, we designed this platform to be op
 
 7. ~~Provide Android app code.~~ [Done! Please head over to [IoTgo Android App](https://github.com/itead/IoTgo_Android_App)]
 
-#start mongod before running this web server
- sudo /usr/bin/mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend &
 
+Install
+
+Get source code from github.com
+
+git clone https://github.com/oatmeal3000/HidrunCloud.git
+
+Change directory to downloaded IoTgo and install dependencies.
+
+cd HidrunCloud
+
+
+#Upgrade node modules before installation
+rm -rf node_modules && npm install
+
+Change directory to IoTgo Web App frontend and install dependencies.
+
+cd public/frontend && bower install
+
+Change directory to IoTgo Web App backend and install dependencies.
+
+cd ../backend && bower install
+
+Change directory back to IoTgo root
+
+cd ../..
+
+Copy config.js.sample to config.js which is the actual configuration file being used during IoTgo boot process.
+
+cp config.js.sample config.js
+
+Edit config.js and change corresponding fields to reflect your hosting environment.
+
+
+#Install mongodb
+http://www.cnblogs.com/OneDirection/p/6797347.html
+
+
+Running the service
+
+you can start it in console mode
+
+DEBUG="iotgo" ./bin/www
+
+To run IoTgo on other port instead of 80, you can use PORT environment variable.
+
+PORT="3000" DEBUG="iotgo" ./bin/www
+
+To run IoTgo as system service
+
+sudo service iotgo start
 
